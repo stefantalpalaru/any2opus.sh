@@ -10,25 +10,25 @@ default output format - which can also be changed using command line arguments.
 
 ## usage
 
-```bash
+```text
 $ ./any2opus.sh --help
 any2opus.sh, version 0.1
 
 Usage: any2opus.sh [options] file|dir...
 Supported input formats: all supported by FFmpeg
 Options:
--h | --help		        this help
--q | --quality QUAL	    encoding quality as understood by 'libopus' - higher is better (default: 192)
--k | --keep		        keep original file (unless it's a *.opus)
--d | --dir DIR		    put the result in DIR (create if missing)
--n | --dry-run		    do not run the conversion
--j | --jobs		        number of parallel jobs (default is 0, which means as many as logical CPU cores)
---only-exts EXTS	    only process files with these extensions (space separated, e.g.: ".flac .wav")
---opus			        output Opus (default)
---ogg			        output Ogg/Vorbis
---mp3			        output MP3
---wav			        output WAV
---version		        show version
+-h | --help		this help
+-q | --quality QUAL	encoding quality as understood by 'libopus' - higher is better (default: 192)
+-k | --keep		keep original file (unless it's a *.opus)
+-d | --dir DIR		put the result in DIR (create if missing)
+-n | --dry-run		do not run the conversion
+-j | --jobs		number of parallel jobs (default is 0, which means as many as logical CPU cores)
+--only-exts EXTS	only process files with these extensions (space separated, e.g.: ".flac .wav")
+--opus			output Opus (default)
+--ogg			output Ogg/Vorbis
+--mp3			output MP3
+--wav			output WAV
+--version		show version
 ```
 
 ## examples
