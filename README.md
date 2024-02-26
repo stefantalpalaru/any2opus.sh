@@ -5,7 +5,7 @@
 Metadata is preserved. Any directory on the command line is traversed
 recursively. By default, the original audio files are deleted.
 
-Symbolic links like "any2ogg.sh", "any2mp3.sh" and "any2wav.sh" change the
+Symbolic links like "any2ogg.sh", "any2mp3.sh", "any2flac.sh" and "any2wav.sh" change the
 default output format - which can also be changed using command line arguments.
 
 ## usage
@@ -27,6 +27,7 @@ Options:
 --opus                  output Opus (default)
 --ogg                   output Ogg/Vorbis
 --mp3                   output MP3
+--flac                  output FLAC
 --wav                   output WAV
 --version               show version
 ```

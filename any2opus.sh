@@ -1,7 +1,7 @@
 #!/bin/bash
 # shellcheck enable=avoid-nullary-conditions,check-unassigned-uppercase,deprecate-which,require-double-brackets,require-variable-braces,quote-safe-variables
 
-# Copyright (c) 2007-2023 Ștefan Talpalaru <stefantalpalaru@yahoo.com>
+# Copyright (c) 2007-2024 Ștefan Talpalaru <stefantalpalaru@yahoo.com>
 #
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -84,6 +84,13 @@ case $0 in
   ENCODER_BETTER="N/A"
   DEFAULT_WAV=" (default)"
  ;;
+ *flac*)
+  OUTPUT=flac
+  DEFAULT_QUAL="N/A"
+  ENCODER="N/A"
+  ENCODER_BETTER="N/A"
+  DEFAULT_FLAC=" (default)"
+ ;;
 esac
 
 USAGE="$(basename "$0"), version ${VERSION}\n\
@@ -101,6 +108,7 @@ Options:\n\
 --opus\t\t\toutput Opus${DEFAULT_OPUS}\n\
 --ogg\t\t\toutput Ogg/Vorbis${DEFAULT_OGG}\n\
 --mp3\t\t\toutput MP3${DEFAULT_MP3}\n\
+--flac\t\t\toutput FLAC${DEFAULT_FLAC}\n\
 --wav\t\t\toutput WAV${DEFAULT_WAV}\n\
 --version\t\tshow version\n\
 "
@@ -113,7 +121,7 @@ if [[ "${PIPESTATUS[0]}" != "4" ]]; then
 fi
 
 OPTS="hq:kd:nj:"
-LONGOPTS="help,quality:,keep,dir:,dry-run,ogg,mp3,wav,opus,only-exts:,jobs:,version"
+LONGOPTS="help,quality:,keep,dir:,dry-run,ogg,mp3,flac,wav,opus,only-exts:,jobs:,version"
 
 ! PARSED=$(${GETOPT_BINARY} --options="${OPTS}" --longoptions="${LONGOPTS}" --name "$0" -- "$@")
 if [[ "${PIPESTATUS[0]}" != "0" ]]; then
@@ -163,6 +171,10 @@ while true; do
   ;;
   --wav)
    OUTPUT="wav"
+   shift
+  ;;
+  --flac)
+   OUTPUT="flac"
    shift
   ;;
   --jobs)
@@ -251,6 +263,11 @@ any2mp3_encode() {
    FFMPEG_OPTS+=(
     -codec:a libopus
     -b:a "${QUAL}K"
+   )
+  ;;
+  flac)
+   FFMPEG_OPTS+=(
+    -compression_level 12
    )
   ;;
  esac
