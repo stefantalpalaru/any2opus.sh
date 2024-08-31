@@ -348,7 +348,7 @@ any2mp3_reenc () {
   ffprobe -loglevel quiet -select_streams a -show_entries stream=codec_type -of csv=p=0 "${F}" | grep -q audio || continue
 
   # Encoding.
-  parallel "${PARALLEL_OPTS[@]}" any2mp3_encode "\"${F}\""
+  parallel "${PARALLEL_OPTS[@]}" any2mp3_encode "'${F}'"
  done
 
  wait
