@@ -227,6 +227,7 @@ PARALLEL_OPTS=(
  --semaphore
  --id "any2mp3_$$"
  --jobs "${JOBS}"
+ --unsafe
 )
 
 any2mp3_encode() {
